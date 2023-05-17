@@ -1,0 +1,69 @@
+.myApplicatios {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	border-radius: 20px;
+	padding: 10px 20px;
+	background: rgba(243, 243, 243, 0.5);
+	box-shadow: 3px 3px 5px rgba(222, 232, 245, 0.5),
+		inset 3px 3px 5px rgba(222, 232, 245, 0.5);
+
+	h2 {
+		font-family: 'Noto Serif';
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 25px;
+		color: #313a33;
+	}
+	ul {
+		max-height: 249px;
+		overflow-y: auto;
+		list-style: none;
+
+		&::-webkit-scrollbar {
+			width: 10px;
+		}
+		&::-webkit-scrollbar-thumb {
+			height: 50px;
+			background: #c2c2c2;
+			border-radius: 10px;
+		}
+
+		li {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			grid-template-rows: 1fr;
+			grid-column-gap: 20px;
+			align-items: center;
+			padding: 12px 0;
+			margin: 0 10px;
+			border-bottom: 1px solid rgba(64, 74, 91, 0.2);
+			font-family: 'Bai Jamjuree';
+			font-style: normal;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 18px;
+			text-align: center;
+			color: #313a33;
+			transition: 0.3s ease-in-out;
+
+			button {
+				padding: 6px;
+				background: #fff;
+				border: 1px solid #a171ef;
+				border-radius: 5px;
+				font-family: 'Roboto';
+				font-weight: 500;
+				font-size: 12px;
+				line-height: 14px;
+				color: #5b436a;
+				cursor: pointer;
+				transition: 0.3s ease-in-out;
+
+				&:hover {
+					color: #fff;
+					background: #a171ef;
+				}
+			}
+		}
+	}
+}
