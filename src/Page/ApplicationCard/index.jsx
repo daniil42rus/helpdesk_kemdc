@@ -1,35 +1,85 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHeading } from '../../hooks/useHeading';
 import { useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import QueryString from 'qs';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export const ApplicationCard = () => {
   const applications = useSelector((state) => state.data.applications);
-  const app = useSelector((state) => state.selectApp.applications);
-  useHeading(`Заявка №${app.id}`);
+  const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const isMounted = useRef(false);
-  const navigage = useNavigate();
+  const [app, setApp] = useState({});
+  // const [app, setApp] = useState({
+  //   id: false,
+  //   open: false,
+  //   application: {
+  //     department: false,
+  //     roomNumber: false,
+  //     problems: false,
+  //     problemsDetails: false,
+  //     urgency: false,
+  //   },
+  //   customer: { firstName: false, id: false },
+  //   executor: {
+  //     name: false,
+  //     id: false,
+  //     nickName: false,
+  //   },
+  //   closed: {
+  //     day: false,
+  //     month: false,
+  //     year: false,
+  //     hours: false,
+  //     minutes: false,
+  //     date: false,
+  //   },
+  //   applicationDate: {
+  //     day: false,
+  //     month: false,
+  //     year: false,
+  //     hours: false,
+  //     minutes: false,
+  //     date: false,
+  //   },
+  // });
+
+  useHeading(`Заявка №${id}`);
+  // useEffect(() => {
+  //   const selectApp = applications.filter((obj) => {
+  //     if (Number(obj.id) === Number(id)) return obj;
+  //     return false;
+  //   });
+  //   if (typeof selectApp[0] === 'object') {
+  //     setApp(selectApp[0]);
+  //   }
+  // }, [applications, id]);
 
   useEffect(() => {
-    const fetchId = async () => {
-      const params = QueryString.parse(window.location.search.substring(1));
-      const aq = applications.filter((obj) => {
-         if (Number(obj.id) === Number(params.id)) return obj;
-      });
-
-      console.log(aq);
-
-      const qeryString = QueryString.stringify({
-        id: app.id,
-      });
-
-      navigage(`?${qeryString}`);
+    setIsLoading(true);
+    const fetchApp = async () => {
+      const selectApp = await axios.get(
+        `http://localhost:3004/applications?id=${id}`
+      );
+      setApp(selectApp.data[0]);
+      if (selectApp.data[0]) {
+        setIsLoading(false);
+      }
     };
 
-    fetchId();
-  }, []);
+    fetchApp();
+  }, [id]);
 
-  return <div> {}</div>;
+  return (
+    <>
+      {!isLoading && (
+        <>
+          <span>{app.id}</span>
+          <span>{app.open}</span>
+          <span>{app.application.department}</span>
+          <span>{app.application.roomNumber}</span>
+        </>
+      )}
+    </>
+  );
 };

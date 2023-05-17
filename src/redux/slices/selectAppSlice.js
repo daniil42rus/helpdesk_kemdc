@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  applications: [{ id: 1 }],
+  applications: 0,
 };
 
 export const selectAppSlice = createSlice({

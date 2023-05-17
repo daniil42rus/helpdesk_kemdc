@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useParams } from 'react-router-dom';
 
 import { Home } from './Page/Home';
 import { Applications } from './Page/Applications';
@@ -26,10 +26,12 @@ function App() {
   // const [customers, setCustomers] = useState([]);
   // const [applications, setApplications] = useState([]);
 
-  // const applications = useSelector((state) => state.data.applications);
   //   const selectApp = useSelector((state) => state.selectApp.applications);
 
   const dispatch = useDispatch();
+  const { id } = useParams();
+
+  const applications = useSelector((state) => state.data.applications);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,6 +49,8 @@ function App() {
     fetchData();
   }, []);
 
+
+
   return (
     <div className="main">
       <AsideMenu />
@@ -55,7 +59,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/applications" element={<Applications />} />
-          <Route path="/applicationcard" element={<ApplicationCard />} />
+          <Route path="/applications/:id" element={<ApplicationCard />} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/monitoring" element={<Monitoring />} />
         </Routes>

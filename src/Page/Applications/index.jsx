@@ -16,8 +16,8 @@ export const Applications = () => {
   const onClickCategoty = (id) => {
     dispatch(setCategory(id));
   };
-  const onClickLink = (obj) => {
-    dispatch(setSelectApplications(obj));
+  const onClickLink = (id) => {
+    dispatch(setSelectApplications(id));
   };
 
   const categories = ['Все заявки', 'Открытые', 'В работе', 'Архив'];
@@ -60,7 +60,11 @@ export const Applications = () => {
 
       <ul className={styles.list}>
         {filterApp.map((obj) => (
-          <Link key={obj.id} to="/applicationcard" onClick={() => onClickLink(obj)}>
+          <Link
+            key={obj.id}
+            to={`/applications/${obj.id}`}
+            // onClick={() => onClickLink(obj.id)}
+          >
             <li key={obj.id}>
               <span className={styles.id}>Заявка {obj.id}</span>
               <span className={styles.department}>
