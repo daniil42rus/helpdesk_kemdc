@@ -1,25 +1,83 @@
 .top {
-	button {
-		padding: 9.5px 37.5px;
-		background: #fff;
-		border: 1px solid rgba(0, 0, 0, 0.3);
-		border-radius: 10px;
-		margin-right: 20px;
-		font-family: 'Roboto';
-		font-weight: 400;
-		font-size: 18px;
-		line-height: 21px;
-		color: #000000;
-		cursor: pointer;
-		transition: 0.3s ease-in-out;
+  list-style: none;
+  li {
+    display: inline-block;
+    padding: 9.5px 37.5px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
 
-		&:hover {
-			background: rgba(243, 243, 243, 0.4);
-		}
-	}
+    &:hover {
+      background: rgba(243, 243, 243, 0.4);
+    }
+  }
 }
 
 .active {
-	background: #a171ef;
-	border: 1px solid rgba(0, 0, 0, 0.3);
+  background: #a171ef !important;
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
+}
+a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  height: 70vh;
+  overflow: auto;
+  li {
+    display: flex;
+    width: 280px;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px 20px 20px 0;
+    background: rgba(243, 243, 243, 0.5);
+    border: 1px solid rgba(243, 243, 243, 0.5);
+    box-shadow: 5px 5px 5px rgba(222, 232, 245, 0.3),
+      inset 5px 5px 5px rgba(222, 232, 245, 0.3);
+    border-radius: 5px;
+    border: 2px solid rgba(243, 243, 243, 0.5);
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      border: 2px solid #a171ef;
+    }
+  }
+}
+
+.id {
+  margin-bottom: 13px;
+  font-family: 'Noto Sans';
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.department {
+  margin-bottom: 12px;
+  font-family: 'Noto Sans';
+  font-size: 18px;
+}
+.problems {
+  margin-bottom: 8px;
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.roomNumber {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 16px;
 }

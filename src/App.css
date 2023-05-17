@@ -6,7 +6,7 @@
     flex: 1;
     padding: 0 60px;
 } */
-.main{
+.main {
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -14,8 +14,9 @@
 
 }
 
-.content{
-    margin: 50px 0;
+.content {
+    height: 100vh;
+    padding: 50px 0;
     grid-column-start: 3;
-    grid-column-end:12;
+    grid-column-end: 12;
 }
