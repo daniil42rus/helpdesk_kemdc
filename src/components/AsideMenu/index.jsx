@@ -1,15 +1,17 @@
 import React from 'react';
 import styles from './AsideMenu.module.scss';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export const AsideMenu = () => {
 	return (
 		<aside className={styles.aside}>
-			<img src="img/logo.svg" alt="" />
+			<Link to="/">
+				<img src="img/logo.svg" alt="" />
+			</Link>
 			<menu>
 				<ul>
 					<NavLink
-						to=""
+						to="/"
 						className={({ isActive }) => {
 							return isActive ? `${styles.active}` : '';
 						}}

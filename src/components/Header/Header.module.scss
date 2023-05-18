@@ -12,13 +12,32 @@
 	h1 {
 		grid-column-start: 1;
 		grid-column-end: 3;
+		font-family: 'Bai Jamjuree';
+		font-weight: 600;
+		font-size: 36px;
+		color: #313a33;
 	}
 
 	input {
 		grid-column-start: 3;
 		grid-column-end: 5;
+		padding: 10px;
+		background: #ffffff;
+		border: 2px solid rgba(91, 67, 106, 0.4);
+		border-radius: 5px;
 	}
 	div {
+		width: 200px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		grid-column-start: 6;
+
+		span {
+			font-family: 'Noto Sans';
+			font-weight: 400;
+			font-size: 16px;
+			color: #c2c2c2;
+		}
 	}
 }

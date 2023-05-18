@@ -59,9 +59,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/applications" element={<Applications />} />
-          <Route path="/applications/:id" element={<ApplicationCard />} />
+          <Route path="/application/:id" element={<ApplicationCard />} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/monitoring" element={<Monitoring />} />
+          <Route path="*" element='НЕТУ ТАКОГО ' />
         </Routes>
       </div>
     </div>
