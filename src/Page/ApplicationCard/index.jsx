@@ -3,31 +3,47 @@ import { useHeading } from '../../hooks/useHeading';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {
-	ApplicatiosInfo,
-	ApplicatiosInfoSkeleton,
+  ApplicatiosInfo,
+  ApplicatiosInfoSkeleton,
 } from '../../components/ApplicatiosInfo';
+import { useSelector } from 'react-redux';
 
 export const ApplicationCard = () => {
-	const { id } = useParams();
+  const { id } = useParams();
+  const [app, setApp] = useState(0);
+  useHeading(`Заявка №${id}`);
 
-	const [app, setApp] = useState(false);
+  // useEffect(() => {
+  //   const fetchApp = async () => {
+  //     const selectApp = await axios.get(
+  //       `http://localhost:3004/applications?id=${id}`
+  //     );
+  //     setApp(selectApp.data);
 
-	useHeading(`Заявка №${id}`);
+  //     //   if (app === undefined) {
+  //     //     console.log('da');
+  //     //   }
+  //   };
+  //   fetchApp();
+  // }, [id]);
 
-	useEffect(() => {
-		const fetchApp = async () => {
-			const selectApp = await axios.get(
-				`http://localhost:3004/applications?id=${id}`
-			);
-			setApp(selectApp.data[0]);
-			if (selectApp.data[0]) {
-			}
-		};
+  const applications = useSelector((state) => state.data.applications);
+  useEffect(() => {
+    if (applications.length) {
+      const selApp = applications.filter(
+        (obj) => Number(obj.id) === Number(id)
+      );
+      console.log(selApp);
 
-		fetchApp();
-	}, [id]);
+      if (selApp.length) {
+        setApp(selApp);
+      }
+    }
+  }, [applications, id]);
 
-	return (
-		<>{app ? <ApplicatiosInfo app={app} /> : <ApplicatiosInfoSkeleton />}</>
-	);
+  console.log(app);
+
+  return (
+    <>{app ? <ApplicatiosInfo app={app} /> : <ApplicatiosInfoSkeleton />}</>
+  );
 };

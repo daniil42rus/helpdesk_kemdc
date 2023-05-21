@@ -35,7 +35,7 @@ export const AsideMenu = () => {
 						</li>
 					</NavLink>
 					<NavLink
-						to="applications"
+						to="applications?filter=Все+заявки"
 						className={({ isActive }) => {
 							return isActive ? `${styles.active}` : '';
 						}}

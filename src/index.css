@@ -15,7 +15,7 @@
 }
 
 body {
-  font-family: 'Inter', 'Noto Serif', 'Noto Sans', serif;
+  font-family: 'Inter', 'Roboto', 'Noto Serif', 'Noto Sans', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

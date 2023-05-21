@@ -1,21 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  category: 0,
-}
+  category: false,
+};
 
 export const filtersSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
     setCategory: (state, action) => {
-       state.category = action.payload
-    }
-  
+      state.category = action.payload;
+    },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { setCategory } = filtersSlice.actions
+export const { setCategory } = filtersSlice.actions;
 
-export default filtersSlice.reducer
+export default filtersSlice.reducer;

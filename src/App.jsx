@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import { Route, Routes, useNavigate, useParams } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { Home } from './Page/Home';
 import { Applications } from './Page/Applications';
@@ -22,16 +22,12 @@ import './App.css';
 import { ApplicationCard } from './Page/ApplicationCard';
 
 function App() {
-  // const [executors, setExecutors] = useState([]);
-  // const [customers, setCustomers] = useState([]);
-  // const [applications, setApplications] = useState([]);
-
-  //   const selectApp = useSelector((state) => state.selectApp.applications);
+  const [messages, setMessages] = useState([]);
+  const socket = useRef();
 
   const dispatch = useDispatch();
-  const { id } = useParams();
-
-  const applications = useSelector((state) => state.data.applications);
+  // const { id } = useParams();
+  // const applications = useSelector((state) => state.data.applications);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,9 +43,7 @@ function App() {
     };
 
     fetchData();
-  }, []);
-
-
+  }, [dispatch]);
 
   return (
     <div className="main">
@@ -62,7 +56,7 @@ function App() {
           <Route path="/application/:id" element={<ApplicationCard />} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/monitoring" element={<Monitoring />} />
-          <Route path="*" element='НЕТУ ТАКОГО ' />
+          <Route path="*" element="НЕТУ ТАКОГО " />
         </Routes>
       </div>
     </div>

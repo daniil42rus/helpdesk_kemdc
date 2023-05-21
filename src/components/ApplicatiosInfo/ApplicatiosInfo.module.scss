@@ -1,0 +1,42 @@
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 30px;
+}
+
+.appInfo {
+  padding: 20px;
+  border: 1px solid #f3f3f3;
+  box-shadow: inset 3px 3px 5px rgba(222, 232, 245, 0.5);
+  filter: drop-shadow(3px 3px 5px rgba(222, 232, 245, 0.5));
+  border-radius: 20px;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    margin-bottom: 30px;
+    font-family: 'Roboto';
+    font-size: 18px;
+  }
+}
+
+.info {
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    span {
+      font-family: 'Noto Sans';
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 19px;
+    }
+  }
+}
