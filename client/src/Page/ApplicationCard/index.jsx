@@ -33,7 +33,6 @@ export const ApplicationCard = () => {
       const selApp = applications.filter(
         (obj) => Number(obj.id) === Number(id)
       );
-      console.log(selApp);
 
       if (selApp.length) {
         setApp(selApp);
@@ -41,7 +40,6 @@ export const ApplicationCard = () => {
     }
   }, [applications, id]);
 
-  console.log(app);
 
   return (
     <>{app ? <ApplicatiosInfo app={app} /> : <ApplicatiosInfoSkeleton />}</>

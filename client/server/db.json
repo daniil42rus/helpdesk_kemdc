@@ -359,7 +359,7 @@
       "id": 3,
       "open": false,
       "application": {
-        "department": "10 поликлиника",
+        "department": "160 поликлиника",
         "roomNumber": "Терминал самозаписи",
         "problems": "Принтер",
         "problemsDetails": "Не печатает",

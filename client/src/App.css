@@ -7,10 +7,10 @@
     padding: 0 60px;
 } */
 .main {
-
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-column-gap: 20px;
+    grid-column-gap: 20px; */
+    display: flex;
 
 }
 

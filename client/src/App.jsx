@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -20,26 +19,24 @@ import {
 
 import './App.css';
 import { ApplicationCard } from './Page/ApplicationCard';
+import { local } from './utils/axios';
 
 function App() {
-  const [messages, setMessages] = useState([]);
-  const socket = useRef();
-
   const dispatch = useDispatch();
   // const { id } = useParams();
   // const applications = useSelector((state) => state.data.applications);
 
   useEffect(() => {
     const fetchData = async () => {
-      const getExecutors = await axios.get('http://localhost:3004/executors');
-      const getCustomers = await axios.get('http://localhost:3004/customers');
-      const getApplications = await axios.get(
-        'http://localhost:3004/applications'
-      );
+      // const getExecutors = await local.get('executors');
+      // const getCustomers = await local.get('customers');
+      const getApplications = await local.get('applications');
 
-      dispatch(setExecutors(getExecutors.data));
-      dispatch(setCustomers(getCustomers.data));
+      // dispatch(setExecutors(getExecutors.data));
+      // dispatch(setCustomers(getCustomers.data));
       dispatch(setApplications(getApplications.data));
+
+
     };
 
     fetchData();

@@ -14,13 +14,11 @@ export const Applications = () => {
   const categories = ['Все заявки', 'Открытые', 'В работе', 'Архив'];
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const postQuery = searchParams.get('filter') || '';
-
-  console.log(applications.length);
+  const categoryQuery = searchParams.get('filter') || '';
 
   useEffect(() => {
-    dispatch(setCategory(categories.indexOf(postQuery)));
-  }, []);
+    dispatch(setCategory(categories.indexOf(categoryQuery)));
+  }, [categoryQuery]);
 
   const onClickCategoty = (id) => {
     setSearchParams({ filter: categories[id] });
@@ -73,8 +71,8 @@ export const Applications = () => {
               <span className={styles.problems}>
                 {obj.application.problems} {obj.application.problemsDetails}{' '}
               </span>
-              <span className={styles.roomNumber}>
-                Кабинет {obj.application.roomNumber}
+              <span className={styles.room}>
+                Кабинет {obj.application.room}
               </span>
             </li>
           </Link>

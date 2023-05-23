@@ -5,8 +5,8 @@ import { WebSock } from '../WebSock/WebSock';
 
 export const ApplicatiosInfo = ({ app }) => {
   const appObj = app[0];
-  const openDate = new Date(appObj.applicationDate.date);
-  const closedDate = new Date(appObj.closed.date);
+  const openDate = new Date(appObj.application.creation);
+  const closedDate = new Date(appObj.application.closing);
 
   const { updateApplications } = WebSock();
 
@@ -37,23 +37,26 @@ export const ApplicatiosInfo = ({ app }) => {
               </div>
               <div>
                 <span>Комментарии</span>
-                <span>{appObj.application.problemsDetails}</span>
+                <span>{appObj.application.details}</span>
               </div>
               <div>
                 <span>Пользователь</span>
-                <span>{appObj.customer.firstName}</span>
+                <span>{appObj.client.name}</span>
               </div>
               <div>
                 <span>Кабинет</span>
-                <span>{appObj.application.roomNumber}</span>
+                <span>{appObj.application.room}</span>
               </div>
               <div>
                 <span>Исполнитель</span>
-                <span>{appObj.executor.name}</span>
+                <span>{appObj.administrator && appObj.administrator.name}</span>
               </div>
               <div>
                 <span>Дата закрытия заявки</span>
-                <span>{appObj.closed.date && closedDate.toLocaleString()}</span>
+                <span>
+                  {appObj.application.daclosingte &&
+                    closedDate.toLocaleString()}
+                </span>
               </div>
             </div>
           </div>

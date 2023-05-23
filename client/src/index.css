@@ -12,6 +12,7 @@
     background: #c2c2c2;
     border-radius: 10px;
   }
+
 }
 
 body {
@@ -19,3 +20,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* @media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: white;
+  }
+} */
