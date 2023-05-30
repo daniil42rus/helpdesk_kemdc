@@ -15,9 +15,38 @@
 }
 
 .content {
+    width: 1280px;
     height: 100vh;
-    overflow: hidden;
-    padding: 50px 0;
-    grid-column-start: 3;
-    grid-column-end: 12;
+    overflow: auto;
+    /* overflow: hidden;     */
+    margin: auto;
+    padding: 50px 20px;
+}
+
+button {
+    padding: 15px;
+    background: #FFFFFF;
+    outline: 2px solid #6EA079;
+    border-radius: 5px;
+    border: none;
+    font-family: 'Noto Sans';
+    font-size: 16px;
+    color: #313A33;
+    transition: .2s ease-in-out;
+
+    &:hover {
+        outline: 4px solid #6EA079;
+    }
+
+    &:active {
+        color: #FFFFFF;
+        background: #6EA079;
+    }
+
+    &:disabled {
+        outline: 2px solid #C2C2C2;
+        color: #C2C2C2;
+        background: #FFFFFF;
+    }
+
 }

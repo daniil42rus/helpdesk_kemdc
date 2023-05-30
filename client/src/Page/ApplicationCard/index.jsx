@@ -28,18 +28,16 @@ export const ApplicationCard = () => {
   // }, [id]);
 
   const applications = useSelector((state) => state.data.applications);
+
   useEffect(() => {
     if (applications.length) {
       const selApp = applications.filter(
         (obj) => Number(obj.id) === Number(id)
       );
 
-      if (selApp.length) {
-        setApp(selApp);
-      }
+      selApp.length && setApp(selApp);
     }
   }, [applications, id]);
-
 
   return (
     <>{app ? <ApplicatiosInfo app={app} /> : <ApplicatiosInfoSkeleton />}</>

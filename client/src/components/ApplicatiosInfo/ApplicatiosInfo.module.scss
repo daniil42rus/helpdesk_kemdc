@@ -7,10 +7,9 @@
 
 .appInfo {
   padding: 20px;
-  border: 1px solid #f3f3f3;
-  box-shadow: inset 3px 3px 5px rgba(222, 232, 245, 0.5);
-  filter: drop-shadow(3px 3px 5px rgba(222, 232, 245, 0.5));
-  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 1px 1px 5px #c2c2c2;
+  border-radius: 10px;
 
   .top {
     display: flex;
@@ -30,13 +29,49 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #c2c2c2;
 
     span {
       font-family: 'Noto Sans';
       font-weight: 400;
       font-size: 14px;
       line-height: 19px;
+      
+        a{
+          margin: 0 10px;
+        }
+    }
+  }
+}
+
+.right {
+  .rightContent {
+    padding: 40px;
+    background: #ffffff;
+    box-shadow: 1px 1px 5px #c2c2c2;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  .rightTop {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #c2c2c2;
+
+    span {
+      font-family: 'Noto Sans';
+      font-size: 16px;
+      color: #313a33;
+    }
+  }
+
+  .btnItems {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      margin-right: 10px;
     }
   }
 }

@@ -9,7 +9,7 @@
 
   &::-webkit-scrollbar-thumb {
     height: 50px;
-    background: #c2c2c2;
+    background: #C9DDCD;
     border-radius: 10px;
   }
 
@@ -19,6 +19,8 @@ body {
   font-family: 'Inter', 'Roboto', 'Noto Serif', 'Noto Sans', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #FAFAFA;
+
 }
 
 /* @media (prefers-color-scheme: dark) {

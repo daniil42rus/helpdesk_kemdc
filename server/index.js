@@ -3,7 +3,13 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import applicationsRouter from './routes/applications.js';
+import administratorsRouter from './routes/administrators.js';
+import clientsRouter from './routes/clients.js';
+import authRouter from './routes/auth.js';
+import os from 'os'
+// require("os").userInfo().username
 
+console.log(os.userInfo().username);
 const app = express();
 dotenv.config();
 
@@ -22,6 +28,10 @@ app.get('/', (req,res) => {
 
 //Routes
 app.use('/api/applications/', applicationsRouter);
+
+app.use('/api/administrators/', administratorsRouter);
+app.use('/api/clients/', clientsRouter);
+app.use('/api/auth/', authRouter);
 
 async function start() {
 	try {

@@ -1,0 +1,24 @@
+.userTop {
+  margin-bottom: 40px;
+}
+
+.userInfo {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #c2c2c2;
+
+  .userLeft {
+    display: inline-block;
+    min-width: 120px;
+    margin-right: 50px;
+    font-family: 'Noto Sans';
+    font-size: 14px;
+    color: #c2c2c2;
+  }
+  span {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-size: 14px;
+    color: #313a33;
+  }
+}

@@ -1,12 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setApplications } from '../../redux/slices/dataSlice';
 
-export const WebSock = () => {
-  
+export const WebSock = async () => {
   const dispatch = useDispatch();
   const socket = useRef();
-  
+
   useEffect(() => {
     socket.current = new WebSocket('ws://localhost:5001');
     socket.current.onopen = () => {};
@@ -34,20 +33,20 @@ export const WebSock = () => {
     };
     socket.current.send(JSON.stringify(message));
   };
-  const updateExecutors = () => {
+  const updateAdministrators = () => {
     const message = {
       id: Date.now(),
-      event: 'executors',
+      event: 'administrators',
     };
     socket.current.send(JSON.stringify(message));
   };
-  const updateCustomers = () => {
+  const updateClient = () => {
     const message = {
       id: Date.now(),
-      event: 'customers',
+      event: 'client',
     };
     socket.current.send(JSON.stringify(message));
   };
 
-  return { updateApplications, updateExecutors, updateCustomers };
+  return { updateApplications, updateAdministrators, updateClient };
 };

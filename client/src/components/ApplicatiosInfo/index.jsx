@@ -1,14 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ContentLoader from 'react-content-loader';
 import styles from './ApplicatiosInfo.module.scss';
 import { WebSock } from '../WebSock/WebSock';
+import { closedApp } from '../../redux/slices/dataSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 export const ApplicatiosInfo = ({ app }) => {
   const appObj = app[0];
+  const dispatch = useDispatch();
+
+  const { administrators } = useSelector((state) => state.data);
+  const { user } = useSelector((status) => status.auth);
+
   const openDate = new Date(appObj.application.creation);
   const closedDate = new Date(appObj.application.closing);
 
   const { updateApplications } = WebSock();
+
+  const [admin, setAdmin] = useState();
+
+  const onClickClosed = () => {
+    const administrator = user;
+    dispatch(closedApp({ appObj, administrator }));
+  };
+  const { status } = useSelector((status) => status.auth);
+
+  useEffect(() => {
+    if (status) toast(status);
+  }, [status]);
 
   const Info = () => {
     return (
@@ -41,37 +61,70 @@ export const ApplicatiosInfo = ({ app }) => {
               </div>
               <div>
                 <span>Пользователь</span>
-                <span>{appObj.client.name}</span>
+                <span>
+                  {appObj.client && appObj.client.name}
+
+                  {appObj.client && (
+                    <a
+                      href={'https://t.me/' + appObj.client.nickname}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {appObj.client.nickname}
+                    </a>
+                  )}
+                </span>
               </div>
               <div>
                 <span>Кабинет</span>
                 <span>{appObj.application.room}</span>
               </div>
-              <div>
-                <span>Исполнитель</span>
-                <span>{appObj.administrator && appObj.administrator.name}</span>
-              </div>
-              <div>
-                <span>Дата закрытия заявки</span>
-                <span>
-                  {appObj.application.daclosingte &&
-                    closedDate.toLocaleString()}
-                </span>
-              </div>
+              {appObj.administrator && (
+                <div>
+                  <span>Исполнитель</span>
+                  <span>{appObj.administrator.name}</span>
+                </div>
+              )}
+              {appObj.application.closing && (
+                <div>
+                  <span>Дата закрытия заявки</span>
+                  <span>{closedDate.toLocaleString()}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         <div className={styles.right}>
-          <button>Перенаправить</button>
-          <button>Взять в работу</button>
-          <button onClick={updateApplications}>Закрыть заявку</button>
+          <div className={styles.rightContent}>
+            <div className={styles.rightTop}>
+              <span>Выбрать исполнителя</span>
+              <select value={admin} onChange={(e) => setAdmin(e.target.value)}>
+                <option value={false} selected disabled>
+                  Исполнитель
+                </option>
+                {administrators.map((admin, index) => (
+                  <option key={index} value={admin.name}>
+                    {admin.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className={styles.btnItems}>
+            <button>Перенаправить</button>
+            <button>Взять в работу</button>
+            <button onClick={() => onClickClosed()}>Закрыть заявку</button>
+          </div>
         </div>
       </div>
     );
   };
-
-  return <>{appObj ? <Info /> : <span>Нету такой заяки </span>}</>;
+  return (
+    <>
+      <Info />
+    </>
+  );
 };
 
 export const ApplicatiosInfoSkeleton = () => {

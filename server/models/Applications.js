@@ -6,10 +6,12 @@ const ApplicationsSchema = new mongoose.Schema(
       type: Number,
       required: true,
       unique: true,
+      default: 0,
     },
+
     open: {
       type: Boolean,
-      required: true,
+      default: true,
     },
     application: {
       department: {
@@ -39,14 +41,21 @@ const ApplicationsSchema = new mongoose.Schema(
       closing: Date,
     },
     client: {
-      name: String,
+      name: {
+        type: String,
+      },
       id: {
         type: Number,
-        required: true,
       },
       nickname: {
         type: String,
-        required: true,
+      },
+      phone: {
+        type: String,
+      },
+      username: {
+        type: String,
+        // default: os.userInfo().username,
       },
     },
     administrator: {
@@ -55,7 +64,9 @@ const ApplicationsSchema = new mongoose.Schema(
       nickname: String,
     },
   },
-  { versionKey: false }
+  {
+    versionKey: false,
+  }
 );
 
 export default mongoose.model('Applications', ApplicationsSchema);

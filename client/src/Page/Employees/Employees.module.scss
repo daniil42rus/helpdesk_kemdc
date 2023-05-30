@@ -1,0 +1,13 @@
+.adminList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    min-width: 380px;
+    padding: 20px;
+    margin: 0 10px 10px 0;
+    background: #ffffff;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    border-radius: 10px;
+  }
+}
