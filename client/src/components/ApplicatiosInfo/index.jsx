@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ContentLoader from 'react-content-loader';
 import styles from './ApplicatiosInfo.module.scss';
-import { WebSock } from '../WebSock/WebSock';
-import { closedApp } from '../../redux/slices/dataSlice';
+import { closedApp, takeApp } from '../../redux/slices/dataSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { AppContext } from '../../App';
 
 export const ApplicatiosInfo = ({ app }) => {
   const appObj = app[0];
   const dispatch = useDispatch();
+
+  const { WebSocketMessage } = useContext(AppContext);
 
   const { administrators } = useSelector((state) => state.data);
   const { user } = useSelector((status) => status.auth);
@@ -16,14 +18,20 @@ export const ApplicatiosInfo = ({ app }) => {
   const openDate = new Date(appObj.application.creation);
   const closedDate = new Date(appObj.application.closing);
 
-  const { updateApplications } = WebSock();
-
   const [admin, setAdmin] = useState();
 
-  const onClickClosed = () => {
-    const administrator = user;
-    dispatch(closedApp({ appObj, administrator }));
+  const onClickClosed = async () => {
+    const administrator = await user;
+    await dispatch(closedApp({ appObj, administrator }));
+    await WebSocketMessage('applications');
   };
+
+  const onClickTake = async () => {
+    const administrator = await user;
+    await dispatch(takeApp({ appObj, administrator }));
+    await WebSocketMessage('applications');
+  };
+
   const { status } = useSelector((status) => status.auth);
 
   useEffect(() => {
@@ -95,28 +103,33 @@ export const ApplicatiosInfo = ({ app }) => {
           </div>
         </div>
 
-        <div className={styles.right}>
-          <div className={styles.rightContent}>
-            <div className={styles.rightTop}>
-              <span>Выбрать исполнителя</span>
-              <select value={admin} onChange={(e) => setAdmin(e.target.value)}>
-                <option value={false} selected disabled>
-                  Исполнитель
-                </option>
-                {administrators.map((admin, index) => (
-                  <option key={index} value={admin.name}>
-                    {admin.name}
+        {appObj.open && (
+          <div className={styles.right}>
+            <div className={styles.rightContent}>
+              <div className={styles.rightTop}>
+                <span>Выбрать исполнителя</span>
+                <select
+                  value={admin}
+                  onChange={(e) => setAdmin(e.target.value)}
+                >
+                  <option value={false} selected disabled>
+                    Исполнитель
                   </option>
-                ))}
-              </select>
+                  {administrators.map((admin, index) => (
+                    <option key={index} value={admin.name}>
+                      {admin.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className={styles.btnItems}>
+              <button>Перенаправить</button>
+              <button onClick={() => onClickTake()}>Взять в работу</button>
+              <button onClick={() => onClickClosed()}>Закрыть заявку</button>
             </div>
           </div>
-          <div className={styles.btnItems}>
-            <button>Перенаправить</button>
-            <button>Взять в работу</button>
-            <button onClick={() => onClickClosed()}>Закрыть заявку</button>
-          </div>
-        </div>
+        )}
       </div>
     );
   };

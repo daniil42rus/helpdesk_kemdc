@@ -33,9 +33,10 @@ button {
     font-size: 16px;
     color: #313A33;
     transition: .2s ease-in-out;
+    cursor: pointer;
 
     &:hover {
-        outline: 4px solid #6EA079;
+        outline: 3px solid #6EA079;
     }
 
     &:active {

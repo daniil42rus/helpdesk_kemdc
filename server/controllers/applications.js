@@ -6,7 +6,8 @@ export const applications = async (req, res) => {
     const { application, client } = req.body;
 
     const app = await local.get('/applications/').then(function (res) {
-      return res.data[res.data.length - 1].id;
+      // return res.data[res.data.length - 1].id;
+      return res.data.length;
     });
 
     const newApplications = new Applications({
@@ -46,18 +47,15 @@ export const getAllApplications = async (req, res) => {
   }
 };
 
-// Update app
+// Closed app
 export const closedApplication = async (req, res) => {
   try {
     const { _id, administrator } = req.body;
-
-    console.log(_id);
-    console.log(administrator);
     const app = await Applications.findById({ _id });
 
     if (!app)
       return res.json({
-        message: 'Такого пользователя не существует',
+        message: 'Такой завяки не существует',
       });
 
     app.open = false;
@@ -71,6 +69,36 @@ export const closedApplication = async (req, res) => {
     res.json({
       app,
       message: `Заявка №${app.id} закрыта`,
+      code: 200,
+    });
+  } catch (error) {
+    res.json({ message: 'Что то пошло не так.' + error });
+  }
+};
+
+// Take app
+export const takeApplication = async (req, res) => {
+  try {
+    const { _id, administrator } = req.body;
+    const app = await Applications.findById({ _id });
+
+    if (!app)
+      return res.json({
+        message: 'Такой завяки не существует',
+      });
+
+    app.administrator.id = administrator.id;
+    app.administrator.name = administrator.name;
+    app.administrator.nickname = administrator.nickname;
+    await app.save();
+
+
+    
+
+    res.json({
+      app,
+      message: `Заявка №${app.id} взята в рабоу`,
+      code: 200,
     });
   } catch (error) {
     res.json({ message: 'Что то пошло не так.' + error });

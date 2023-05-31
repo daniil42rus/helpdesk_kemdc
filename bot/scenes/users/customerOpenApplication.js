@@ -1,6 +1,6 @@
 const { Markup, Composer, Scenes } = require('telegraf');
 require('dotenv').config();
-const axios = require('axios').default;
+const local = require('../../utils/axios');
 
 const customerOpenApplication = new Composer();
 customerOpenApplication.on('text', async (ctx) => {
@@ -16,32 +16,27 @@ customerOpenApplication.on('text', async (ctx) => {
 
     const wizardData = ctx.wizard.state.data;
 
-    const applications = await axios
-      .get('http://localhost:3002/api/applications')
-      .then(function (res) {
-        const userapp = res.data.filter(
-          (app) => app.client.id == wizardData.userId
-        );
-        const userOpenApp = userapp.filter((app) => app.open);
-
-        return userOpenApp;
-      });
+    const applications = await local.get('/applications').then(function (res) {
+      const userapp = res.data.filter(
+        (app) => app.client && app.client.id == wizardData.userId
+      );
+      const userOpenApp = userapp.filter((app) => app.open);
+      return userOpenApp;
+    });
 
     for (i of applications) {
-      let answer = `
-                    ${i.application.department} 
-              Номер кабинета: ${i.application.room}       
-              Срочность:  ${i.application.urgency}       
-              Отправитель:  ${i.client.name}      
-              В чем проблема:   ${i.application.problems}      
-              Описание:   ${i.application.details} 
-              id заявки:  ${i.id}      
-              Исполнитель: ${
-                !i.administrator
-                  ? 'не назначен'
-                  : i.administrator.name + ' - t.me/' + i.administrator.nickName
-              }
-              `;
+      let answer = `${i.application.department}
+      Номер кабинета: ${i.application.room}
+      Срочность:  ${i.application.urgency}
+      Отправитель:  ${i.client.name}
+      В чем проблема:   ${i.application.problems}
+      Описание:   ${i.application.details}
+      id заявки:  ${i.id}
+      Исполнитель: ${
+        !i.administrator
+          ? 'не назначен'
+          : i.administrator.name + ' - t.me/' + i.administrator.nickName
+      }`;
 
       await ctx.reply(answer, {
         disable_web_page_preview: true,

@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { local } from '../../utils/axios';
+import axios from 'axios';
+
+const BOT_TOKEN = process.env.REACT_APP_BOT_TOKEN;
 
 const initialState = {
   applications: [],
@@ -29,6 +32,37 @@ export const closedApp = createAsyncThunk(
         _id: appObj._id,
         administrator,
       });
+      const colesMessage = `Вашу заявку с ID ${appObj.id} закрыл ${administrator.name} `;
+
+      data.code === 200 &&
+        appObj.client &&
+        (await axios.post(
+          `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${appObj.client.id}&text=${colesMessage}`
+        ));
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const takeApp = createAsyncThunk(
+  '/applications/take',
+  async ({ appObj, administrator }) => {
+    try {
+      const { data } = await local.post('/applications/take', {
+        _id: appObj._id,
+        administrator,
+      });
+      const takeMessage = `Вашу заявку с ID ${appObj.id} взял в рабоу ${administrator.name} `;
+
+      data.code === 200 &&
+        appObj.client &&
+        (await axios.post(
+          `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${appObj.client.id}&text=${takeMessage}`
+        ));
+
       return data;
     } catch (error) {
       console.log(error);
@@ -79,6 +113,20 @@ export const dataSlice = createSlice({
       state.status = action.payload.message;
     },
     [closedApp.rejectWithValue]: (state, action) => {
+      state.isLoading = false;
+      state.status = action.payload.message;
+    },
+
+    // Взять себе заявку
+    [takeApp.pending]: (state) => {
+      state.isLoading = true;
+      state.status = null;
+    },
+    [takeApp.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.status = action.payload.message;
+    },
+    [takeApp.rejectWithValue]: (state, action) => {
       state.isLoading = false;
       state.status = action.payload.message;
     },

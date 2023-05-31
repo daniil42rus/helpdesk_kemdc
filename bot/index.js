@@ -12,7 +12,6 @@ const myOpenApplicationScene = require('./scenes/admins/myOpenApplication');
 const myClosedMonthApplicationScene = require('./scenes/admins/myClosedMonthApplication');
 const allOpenApplicationScene = require('./scenes/admins/allOpenApplication');
 const sendApplicationScene = require('./scenes/admins/sendApplication');
-const personOpenApplicationScene = require('./scenes/admins/personOpenApplication');
 const messageAllScene = require('./scenes/admins/massageAll');
 
 //users
@@ -26,7 +25,6 @@ const stage = new Scenes.Stage([
   myClosedMonthApplicationScene,
   allOpenApplicationScene,
   sendApplicationScene,
-  personOpenApplicationScene,
   messageAllScene,
   applicationScene,
   customerOpenApplicationScene,
@@ -125,22 +123,6 @@ bot.hears('Отправить сообщение', async (ctx) => {
   }
 });
 
-bot.command('person', (ctx) => {
-  console.log(ctx.message.text, ctx.chat, date.toLocaleString());
-  if (
-    ctx.from.id == process.env.admin1 ||
-    ctx.from.id == process.env.admin2 ||
-    ctx.chat.type == 'private'
-  ) {
-    ctx.scene.enter('personOpenApplicationWizard');
-  } else {
-    ctx.reply(
-      'Что бы отправить завяку в ИТ отдел, нажмите /new_application',
-      Markup.removeKeyboard()
-    );
-  }
-});
-
 bot.command('new_application', (ctx) => {
   console.log(ctx.message.text, ctx.chat, date.toLocaleString());
   if (ctx.chat.type == 'private') {
@@ -197,4 +179,3 @@ bot.on('message', (ctx) => {
 });
 
 bot.launch();
-

@@ -16,7 +16,7 @@ export const administrators = async (req, res) => {
     res.json({
       newAdministrators,
       message: `Пользователь ${newAdministrators.login} добавлен `,
-    });
+    });    
   } catch (error) {
     console.log(error);
     res.json({ message: 'Ошибка при создании пользователя.' });
