@@ -37,6 +37,7 @@ function App() {
   const socket = useRef();
 
   const isAuth = useSelector(checkIsAuth);
+
   const isUser = useSelector(thisUser);
   const { status } = useSelector((status) => status.data);
 
@@ -45,7 +46,7 @@ function App() {
     if (status) toast(status);
   }, [dispatch, status]);
 
-  // const applications = useSelector((state) => state.data.applications);
+  // const { applications } = useSelector((state) => state.data);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,15 +75,15 @@ function App() {
     };
     socket.current.onclose = () => {
       console.log('Socket закрыт');
-      alert('Socket закрыт');
-      alert('Обновите страницу');
+      window.location.reload();
+      // alert('Socket закрыт');
+      // alert('Обновите страницу');
     };
     socket.current.onerror = () => {
       console.log('Socket произошла ошибка');
       alert('Socket произошла ошибка');
       alert('Обновите страницу');
     };
-
     setInterval(() => {
       WebSocketMessage('applications');
     }, 60000);
@@ -91,13 +92,10 @@ function App() {
   const WebSocketMessage = (mess) => {
     const message = {
       id: Date.now(),
-      // event: 'applications',
       event: mess,
     };
     socket.current.send(JSON.stringify(message));
   };
-
- 
 
   return (
     <>

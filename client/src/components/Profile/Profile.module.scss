@@ -1,60 +1,60 @@
 .profile {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	background: rgba(243, 243, 243, 0.5);
-	box-shadow: 3px 3px 5px rgba(222, 232, 245, 0.5),
-		inset 3px 3px 5px rgba(222, 232, 245, 0.5);
-	border-radius: 20px;
-	padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff;
+  filter: drop-shadow(1px 1px 5px rgba(194, 194, 194, 0.2));
+
+  border-radius: 10px;
+  //   padding: 10px 20px;
 }
 
 .top {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(201, 221, 205);
+  border-radius: 10px 10px 0px 0px;
+  padding: 17px 30px;
 
-	h2 {
-		font-family: 'Noto Serif';
-		font-weight: 700;
-		font-size: 18px;
-		line-height: 25px;
-		color: #313a33;
-	}
+  h2 {
+    font-family: 'Noto Serif';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    color: #313a33;
+  }
+  button {
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    font-size: 14px;
+    padding: 5px;
+    background-color: transparent;
+  }
+}
 
-	a {
-		font-family: 'Noto Sans';
-		font-weight: 400;
-		font-size: 14px;
-		line-height: 19px;
-		color: #c2c2c2;
-		text-decoration: none;
-		transition: 0.3s ease-in-out;
-
-		&:hover {
-			color: violet;
-		}
-	}
+.content {
+  padding: 26px 35px;
 }
 
 .infoContent {
-	display: flex;
-	margin-bottom: 20px;
-	.infoLeft {
-		min-width: 100px;
-		font-family: 'Noto Sans';
-		font-weight: 400;
-		font-size: 14px;
-		line-height: 19px;
-		color: #c2c2c2;
-	}
-	span {
-		display: inline-block;
-		font-family: 'Noto Sans';
-		font-style: normal;
-		font-weight: 400;
-		font-size: 14px;
-		line-height: 19px;
-		color: #313a33;
-	}
+  display: flex;
+  margin-bottom: 20px;
+  .infoLeft {
+    min-width: 100px;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #c2c2c2;
+  }
+  span {
+    display: inline-block;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #313a33;
+  }
 }

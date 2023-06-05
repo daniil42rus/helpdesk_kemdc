@@ -42,7 +42,21 @@ export const ApplicatiosInfo = ({ app }) => {
     return (
       <div className={styles.content}>
         <div className={styles.left}>
-          <div className={styles.appInfo}>
+          <div
+            style={{
+              borderLeft:
+                (!appObj.open && '30px solid #C2C2C2') ||
+                (appObj.application.urgency === 'Срочно (1-2 часа)' &&
+                  '30px solid #FF7C7C') ||
+                (appObj.application.urgency === 'В течении дня' &&
+                  '30px solid #FFE999') ||
+                (appObj.application.urgency === 'В течении 2х-3х дней' &&
+                  '30px solid #A0D4AB') ||
+                (appObj.application.urgency === 'В течении недели' &&
+                  '30px solid #A0D4AB'),
+            }}
+            className={styles.appInfo}
+          >
             <div className={styles.top}>
               <span>Заявка №{appObj.id}</span>
               <span>{appObj.application.urgency}</span>
@@ -106,26 +120,43 @@ export const ApplicatiosInfo = ({ app }) => {
         {appObj.open && (
           <div className={styles.right}>
             <div className={styles.rightContent}>
-              <div className={styles.rightTop}>
-                <span>Выбрать исполнителя</span>
-                <select
-                  value={admin}
-                  onChange={(e) => setAdmin(e.target.value)}
-                >
-                  <option value={false} selected disabled>
-                    Исполнитель
-                  </option>
-                  {administrators.map((admin, index) => (
-                    <option key={index} value={admin.name}>
-                      {admin.name}
+              {appObj.administrator && appObj.administrator.id === user.id && (
+                <div className={styles.rightTop}>
+                  <span>Выбрать исполнителя</span>
+                  <select
+                    value={admin}
+                    onChange={(e) => setAdmin(e.target.value)}
+                  >
+                    <option value="" selected disabled>
+                      Исполнитель
                     </option>
-                  ))}
-                </select>
+                    {administrators.map((admin, index) => (
+                      <option key={index} value={admin.name}>
+                        {admin.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              <div className={styles.rightTop}>
+                <span>Заявку взял</span>
+                <span>
+                  {appObj.administrator
+                    ? appObj.administrator.name
+                    : 'Заявка ожидает своего администратора'}
+                </span>
               </div>
             </div>
             <div className={styles.btnItems}>
-              <button>Перенаправить</button>
-              <button onClick={() => onClickTake()}>Взять в работу</button>
+              {appObj.administrator && appObj.administrator.id === user.id && (
+                <button>Перенаправить</button>
+              )}
+
+              {!appObj.administrator && (
+                <button onClick={() => onClickTake()}>Взять в работу</button>
+              )}
+
               <button onClick={() => onClickClosed()}>Закрыть заявку</button>
             </div>
           </div>

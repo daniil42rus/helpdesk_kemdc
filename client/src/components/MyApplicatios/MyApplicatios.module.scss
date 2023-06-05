@@ -1,18 +1,39 @@
 .myApplicatios {
   grid-column-start: 1;
-  grid-column-end: 3;
-  border-radius: 20px;
-  padding: 10px 20px;
-  background: rgba(243, 243, 243, 0.5);
-  box-shadow: 3px 3px 5px rgba(222, 232, 245, 0.5),
-    inset 3px 3px 5px rgba(222, 232, 245, 0.5);
+  grid-column-end: 4;
+  background: #ffffff;
+  border-radius: 10px;
+  // padding: 10px 20px;
+  filter: drop-shadow(1px 1px 5px rgba(194, 194, 194, 0.2));
 
-  h2 {
-    font-family: 'Noto Serif';
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 25px;
-    color: #313a33;
+  .myApplicatiosTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(201, 221, 205);
+    border-radius: 10px 10px 0px 0px;
+    padding: 17px 30px;
+
+    h2 {
+      font-family: 'Noto Serif';
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 25px;
+      color: #313a33;
+    }
+    button {
+      display: flex;
+      align-items: center;
+      font-family: 'Noto Sans';
+      font-weight: 400;
+      font-size: 14px;
+      padding: 5px;
+      background-color: transparent;
+
+      span {
+        margin-right: 10px;
+      }
+    }
   }
   ul {
     max-height: 249px;

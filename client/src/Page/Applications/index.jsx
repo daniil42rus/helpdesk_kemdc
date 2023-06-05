@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHeading } from '../../hooks/useHeading';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategory } from '../../redux/slices/filtersSlice';
 import { Link, useSearchParams } from 'react-router-dom';
@@ -8,7 +7,6 @@ import { Modal } from '../../components/Modal';
 import { AddApplicatin } from '../../components/AddApplicatin';
 
 export const Applications = () => {
-  useHeading('Заявки');
   const [addAppModal, setAddAppModal] = useState(false);
   const [filterModal, setFilterModal] = useState(false);
 
@@ -51,32 +49,36 @@ export const Applications = () => {
   return (
     <>
       <div className={styles.optional}>
-        <button
-          className={styles.addBtn}
-          onClick={() => setAddAppModal(!addAppModal)}
-        >
-          <span>Создать заявку</span>
-          <svg
-            width="20"
-            height="21"
-            viewBox="0 0 20 21"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+        <div>
+          <h2>Заявки</h2>
+          <button
+            className={styles.addBtn}
+            onClick={() => setAddAppModal(!addAppModal)}
           >
-            <path
-              d="M8.874 14.426V11.204H5.67V9.926H8.874V6.704H10.17V9.926H13.392V11.204H10.17V14.426H8.874Z"
-              fill="#313A33"
-            />
-            <rect
-              x="0.5"
-              y="1"
-              width="19"
-              height="19"
-              rx="9.5"
-              stroke="#6EA079"
-            />
-          </svg>
-        </button>
+            <span>Создать заявку</span>
+            <svg
+              width="20"
+              height="21"
+              viewBox="0 0 20 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.874 14.426V11.204H5.67V9.926H8.874V6.704H10.17V9.926H13.392V11.204H10.17V14.426H8.874Z"
+                fill="#313A33"
+              />
+              <rect
+                x="0.5"
+                y="1"
+                width="19"
+                height="19"
+                rx="9.5"
+                stroke="#6EA079"
+              />
+            </svg>
+          </button>
+        </div>
+
         <button
           className={styles.addBtn}
           onClick={() => setFilterModal(!filterModal)}
@@ -89,7 +91,7 @@ export const Applications = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g clip-path="url(#clip0_970_4146)">
+            <g clipPath="url(#clip0_970_4146)">
               <path
                 d="M1.33333 3.95818H3.61333C3.7922 4.61629 4.18264 5.19726 4.72444 5.61146C5.26623 6.02566 5.92927 6.25007 6.61125 6.25007C7.29323 6.25007 7.95627 6.02566 8.49806 5.61146C9.03986 5.19726 9.4303 4.61629 9.60917 3.95818H19.6667C19.8877 3.95818 20.0996 3.87039 20.2559 3.7141C20.4122 3.55782 20.5 3.34586 20.5 3.12485C20.5 2.90384 20.4122 2.69187 20.2559 2.53559C20.0996 2.37931 19.8877 2.29152 19.6667 2.29152H9.60917C9.4303 1.63341 9.03986 1.05244 8.49806 0.63824C7.95627 0.224043 7.29323 -0.000366211 6.61125 -0.000366211C5.92927 -0.000366211 5.26623 0.224043 4.72444 0.63824C4.18264 1.05244 3.7922 1.63341 3.61333 2.29152H1.33333C1.11232 2.29152 0.900358 2.37931 0.744078 2.53559C0.587797 2.69187 0.5 2.90384 0.5 3.12485C0.5 3.34586 0.587797 3.55782 0.744078 3.7141C0.900358 3.87039 1.11232 3.95818 1.33333 3.95818ZM6.61083 1.66652C6.89926 1.66652 7.18122 1.75205 7.42104 1.91229C7.66086 2.07253 7.84778 2.30029 7.95816 2.56677C8.06854 2.83325 8.09742 3.12647 8.04115 3.40936C7.98488 3.69225 7.84598 3.9521 7.64203 4.15605C7.43808 4.36 7.17823 4.49889 6.89534 4.55516C6.61245 4.61143 6.31923 4.58255 6.05275 4.47217C5.78628 4.3618 5.55852 4.17488 5.39827 3.93506C5.23803 3.69523 5.1525 3.41328 5.1525 3.12485C5.15294 2.73821 5.30673 2.36753 5.58012 2.09414C5.85352 1.82074 6.22419 1.66696 6.61083 1.66652Z"
                 fill="#313A33"
@@ -143,7 +145,21 @@ export const Applications = () => {
       <ul className={styles.list}>
         {filterApp.map((obj) => (
           <Link key={obj.id} to={`/application/${obj.id}`}>
-            <li key={obj.id}>
+            <li
+              style={{
+                borderLeft:
+                  (!obj.open && '10px solid #C2C2C2') ||
+                  (obj.application.urgency === 'Срочно (1-2 часа)' &&
+                    '10px solid #FF7C7C') ||
+                  (obj.application.urgency === 'В течении дня' &&
+                    '10px solid #FFE999') ||
+                  (obj.application.urgency === 'В течении 2х-3х дней' &&
+                    '10px solid #A0D4AB') ||
+                  (obj.application.urgency === 'В течении недели' &&
+                    '10px solid #A0D4AB'),
+              }}
+              key={obj.id}
+            >
               <span className={styles.id}>Заявка {obj.id}</span>
               <span className={styles.department}>
                 {obj.application.department}

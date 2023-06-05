@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHeading } from '../../hooks/useHeading';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {
@@ -11,7 +10,6 @@ import { useSelector } from 'react-redux';
 export const ApplicationCard = () => {
   const { id } = useParams();
   const [app, setApp] = useState(0);
-  useHeading(`Заявка №${id}`);
 
   // useEffect(() => {
   //   const fetchApp = async () => {

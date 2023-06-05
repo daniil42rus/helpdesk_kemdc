@@ -1,67 +1,77 @@
 .welcome {
-	padding: 32px 20px;
-	border-radius: 20px;
-	background: #f2eaff;
+  filter: drop-shadow(1px 1px 5px rgba(194, 194, 194, 0.2));
+  padding: 32px 20px;
+  border-radius: 10px;
+  background: #fff;
 }
 
 .home_content {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: repeat(2, 1fr);
-	grid-column-gap: 22px;
-	grid-row-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 22px;
+  grid-row-gap: 40px;
 
-	.welcome {
-		position: relative;
-		display: flex;
-		grid-column-start: 1;
-		grid-column-end: 3;
+  .welcomeTop {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    h2 {
+      font-family: 'Noto Serif';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 35px;
+      margin-bottom: 20px;
+    }
+  }
 
-		.welcome_content {
-			display: flex;
-			flex-direction: column;
-			.hello {
-				margin-bottom: 14px;
-				font-family: 'Noto Serif';
-				display: block;
-				font-weight: 700;
-				font-size: 26px;
-				line-height: 35px;
-				color: #313a33;
-			}
+  .welcome {
+    position: relative;
+    display: flex;
 
-			.text {
-				font-family: 'Noto Sans';
-				font-size: 18px;
-				line-height: 25px;
-				color: #313a33;
-			}
+    .welcome_content {
+      display: flex;
+      flex-direction: column;
+      .hello {
+        margin-bottom: 14px;
+        font-family: 'Noto Serif';
+        display: block;
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 35px;
+        color: #313a33;
+      }
 
-			.jhon {
-				align-self: flex-end;
-				margin-bottom: 96px;
-				font-family: 'Noto Sans';
-				font-size: 14px;
-				line-height: 19px;
-				color: #c2c2c2;
-			}
+      .text {
+        font-family: 'Noto Sans';
+        font-size: 18px;
+        line-height: 25px;
+        color: #313a33;
+      }
 
-			.nice {
-				font-family: 'Noto Serif';
-				font-weight: 700;
-				font-size: 26px;
-				line-height: 35px;
-				color: #313a33;
-			}
-		}
+      .jhon {
+        align-self: flex-end;
+        margin-bottom: 96px;
+        font-family: 'Noto Sans';
+        font-size: 14px;
+        line-height: 19px;
+        color: #c2c2c2;
+      }
 
-		img {
-			position: absolute;
-			top: -13px;
-			size: 30px;
-			right: 0;
-		}
-	}
+      .nice {
+        font-family: 'Noto Serif';
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 35px;
+        color: #313a33;
+      }
+    }
 
-
+    img {
+      position: absolute;
+      top: -13px;
+      size: 30px;
+      right: 0;
+    }
+  }
 }

@@ -37,10 +37,10 @@
       font-weight: 400;
       font-size: 14px;
       line-height: 19px;
-      
-        a{
-          margin: 0 10px;
-        }
+
+      a {
+        margin: 0 10px;
+      }
     }
   }
 }
@@ -57,7 +57,7 @@
   .rightTop {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 20px;
+    padding: 20px;
     border-bottom: 1px solid #c2c2c2;
 
     span {

@@ -6,7 +6,6 @@ import { closedApp } from '../../redux/slices/dataSlice';
 import { AppContext } from '../../App';
 
 export const MyApplicatios = () => {
-  const BOT_TOKEN = process.env.REACT_APP_BOT_TOKEN;
   const { WebSocketMessage } = useContext(AppContext);
 
   const dispatch = useDispatch();
@@ -30,7 +29,30 @@ export const MyApplicatios = () => {
 
   return (
     <div className={styles.myApplicatios}>
-      <h2>Мои заявки</h2>
+      <div className={styles.myApplicatiosTop}>
+        <h2>Мои заявки</h2>
+        <button>
+          <span>Смотреть все</span>
+          <svg
+            width="13"
+            height="10"
+            viewBox="0 0 13 10"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 1L11.7519 4.16795C12.3457 4.56377 12.3457 5.43623 11.7519 5.83205L7 9"
+              stroke="#313A33"
+              strokeLinecap="round"
+            />
+            <path
+              d="M1 1L5.75192 4.16795C6.34566 4.56377 6.34566 5.43623 5.75192 5.83205L1 9"
+              stroke="#313A33"
+              strokeLinecap="round"
+            />
+          </svg>
+        </button>
+      </div>
       <ul>
         <li>
           <span>№ заявки</span>

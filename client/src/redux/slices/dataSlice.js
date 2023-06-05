@@ -12,10 +12,11 @@ const initialState = {
 
 export const addApplications = createAsyncThunk(
   '/applications',
-  async ({ application }) => {
+  async ({ application, client }) => {
     try {
       const { data } = await local.post('/applications', {
         application,
+        client,
       });
       return data;
     } catch (error) {

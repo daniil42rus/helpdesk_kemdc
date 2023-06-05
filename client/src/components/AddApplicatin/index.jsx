@@ -13,6 +13,8 @@ export const AddApplicatin = ({ open, setOpen }) => {
   const [problems, setProblems] = useState();
   const [details, setDetails] = useState();
   const [urgency, setUrgency] = useState();
+  const [name, setName] = useState();
+  const [phone, setPhone] = useState();
 
   const { status } = useSelector((status) => status.data);
 
@@ -25,6 +27,7 @@ export const AddApplicatin = ({ open, setOpen }) => {
 
   const application = {
     application: { department, room, problems, details, urgency },
+    client: { name, phone },
   };
 
   const onClickСreate = async () => {
@@ -32,16 +35,15 @@ export const AddApplicatin = ({ open, setOpen }) => {
     await WebSocketMessage('applications');
   };
   return (
-    <>
+    <div className={styles.content}>
       <h3>Создать заявку</h3>
-      <form action="">
+      <form onSubmit={(e) => e.preventDefault()}>
         <select
+          required
           value={department}
           onChange={(e) => setDepartment(e.target.value)}
         >
-          <option selected disabled>
-            Выберите подразделение
-          </option>
+          <option value="">Выберите подразделение</option>
           <option value={'Диагностический центр'}>Диагностический центр</option>
           <option value={'1 поликлиника'}>1 поликлиника</option>
           <option value={'2 поликлиника'}>2 поликлиника</option>
@@ -56,34 +58,58 @@ export const AddApplicatin = ({ open, setOpen }) => {
 
         <input
           type="text"
-          placeholder="room"
+          placeholder="Комната"
           value={room}
           onChange={(e) => setRoom(e.target.value)}
+          required
         />
         <input
           type="text"
-          placeholder="problems"
+          placeholder="В чем проблема"
           value={problems}
           onChange={(e) => setProblems(e.target.value)}
+          required
         />
         <input
           type="text"
-          placeholder="details"
+          placeholder="Детали"
           value={details}
           onChange={(e) => setDetails(e.target.value)}
+          required
         />
-        <input
-          type="text"
-          placeholder="urgency"
+        <select
           value={urgency}
           onChange={(e) => setUrgency(e.target.value)}
+          required
+        >
+          <option value="">Срочность</option>
+          <option value={'Срочно (1-2 часа)'}>Срочно (1-2 часа)</option>
+          <option value={'В течении дня'}>В течении дня</option>
+          <option value={'В течении 2х-3х дней'}>В течении 2х-3х дней</option>
+          <option value={'В течении недели'}>В течении недели</option>
+        </select>
+        <input
+          type="text"
+          placeholder="ФИО"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
         />
-      </form>
+        <input
+          type="tel"
+          placeholder="Номер телефона"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          required
+        />
 
-      <div className={styles.btns}>
-        <button onClick={() => onClickСreate()}>Создать заявку</button>
-        <button onClick={() => setOpen(!open)}>Отменить</button>
-      </div>
-    </>
+        <div className={styles.btns}>
+          <button type="submit" onClick={() => onClickСreate()}>
+            Создать заявку
+          </button>
+          <button onClick={() => setOpen(!open)}>Отменить</button>
+        </div>
+      </form>
+    </div>
   );
 };

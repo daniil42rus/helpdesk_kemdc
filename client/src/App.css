@@ -20,7 +20,8 @@
     overflow: auto;
     /* overflow: hidden;     */
     margin: auto;
-    padding: 50px 20px;
+    padding: 50px 20px 0;
+
 }
 
 button {
@@ -41,7 +42,7 @@ button {
 
     &:active {
         color: #FFFFFF;
-        background: #6EA079;
+        background: #6EA079 !important;
     }
 
     &:disabled {

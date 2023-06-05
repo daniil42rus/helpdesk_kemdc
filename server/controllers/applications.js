@@ -92,9 +92,6 @@ export const takeApplication = async (req, res) => {
     app.administrator.nickname = administrator.nickname;
     await app.save();
 
-
-    
-
     res.json({
       app,
       message: `Заявка №${app.id} взята в рабоу`,
