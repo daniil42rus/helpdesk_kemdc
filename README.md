@@ -11,3 +11,9 @@
 - Axios
 - Jsonwebtoken
 - Mongoose
+
+
+## Bot Telegram
+- NodeJS
+- Node-telegram-bot-api
+- Telegraf
