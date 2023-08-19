@@ -165,7 +165,7 @@ export const Applications = () => {
                 {obj.application.department}
               </span>
               <span className={styles.problems}>
-                {obj.application.problems} {obj.application.problemsDetails}{' '}
+                {obj.application.problems} {obj.application.details}
               </span>
               <span className={styles.room}>
                 Кабинет {obj.application.room}
